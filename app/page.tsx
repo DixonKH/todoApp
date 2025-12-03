@@ -1,6 +1,8 @@
 import { TodoForm } from "./components/TodoForm";
 import { ToDoList } from "./components/TodoList";
 import { getToDos } from "./actions/action";
+export const dynamic = "force-dynamic";
+
 
 export default async function Home() {
   const todo = await getToDos();
