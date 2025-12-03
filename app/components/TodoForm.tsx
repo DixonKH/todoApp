@@ -24,7 +24,7 @@ export const TodoForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full rounded-lg shadow-md p-6 mb-6 border border-green-500"
+      className="w-full rounded-lg shadow-md p-6 mb-6 border border-blue-500"
     >
       <div className="mb-4">
         <label className="block text-sm font-bold mb-2" htmlFor="title">

@@ -56,6 +56,30 @@ export const updateToDo = async (
   }
 };
 
+export const ToggleToDo = async (id: string) => {
+  try {
+    const todo = await prisma.todo.findUnique({
+      where: { id },
+    });
+
+    if (!todo) {
+      throw new Error("Todo not found!");
+    }
+
+    const updatedTodo = await prisma.todo.update({
+      where: { id },
+      data: {
+        isDone: !todo.isDone,
+      },
+    });
+    revalidatePath("/");
+    return updatedTodo;
+  } catch (error) {
+    console.log("Error updating todo", error);
+    throw new Error("Error updating todo");
+  }
+};
+
 export const deleteToDo = async (id: string) => {
   try {
     const todo = await prisma.todo.delete({
