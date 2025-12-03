@@ -11,19 +11,23 @@ export const TodoForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     startTransition(async () => {
-      await createToDo(title, description);
-      setTitle("");
-      setDescription("");
+      try {
+        await createToDo(title, description);
+        setTitle("");
+        setDescription("");
+      } catch (error) {
+        console.log("Error creating todo", error);
+      }
     });
-  }
+  };
 
   return (
-    <form className="w-full rounded-lg shadow-md p-6 mb-6 border border-green-500">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full rounded-lg shadow-md p-6 mb-6 border border-green-500"
+    >
       <div className="mb-4">
-        <label
-          className="block text-sm font-bold mb-2"
-          htmlFor="title"
-        >
+        <label className="block text-sm font-bold mb-2" htmlFor="title">
           Title
         </label>
         <input
@@ -39,17 +43,14 @@ export const TodoForm = () => {
         />
       </div>
       <div className="mb-4">
-        <label
-          className="block text-sm font-bold mb-2"
-          htmlFor="title"
-        >
+        <label className="block text-sm font-bold mb-2" htmlFor="title">
           Description
         </label>
-        <input
-          type="text"
+        <textarea
+          rows={3}
           id="description"
           value={description}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
           disabled={isPending}
           placeholder="Enter a optional description..."
           required
