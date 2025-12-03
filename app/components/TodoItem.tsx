@@ -65,7 +65,7 @@ export const TodoItem = ({ todo }: { todo: Todo }) => {
 
   return (
     <div
-      className={`bg-white dark:bg-gray-900 rounded-lg shadow-md p-4 mb-3 border-l-4 ${
+      className={`bg-white border dark:bg-gray-900 rounded-lg shadow-lg p-4 mb-3 border-l-5 ${
         todo.isDone ? "border-green-500 opacity-75" : "border-blue-500"
       }`}
     >
@@ -126,21 +126,21 @@ export const TodoItem = ({ todo }: { todo: Todo }) => {
           <div className="flex-1">
             <h3
               className={`text-lg font-semibold ${
-                todo.isDone ? "line-through text-gray-500" : ""
+                todo.isDone ? "line-through dark:text-gray-500" : ""
               }`}
             >
               {todo.title}
             </h3>
             {todo.description && (
               <p
-                className={`text-gray-300 ${
-                  todo.isDone ? "line-through text-gray-500" : ""
+                className={`dark:text-gray-300 ${
+                  todo.isDone ? "line-through " : ""
                 }`}
               >
                 {todo.description}
               </p>
             )}
-            <p className="mt-2 text-xs text-gray-400">
+            <p className="mt-2 text-xs text-gray-500">
               {new Date(todo.createdAt).toDateString()}
             </p>
           </div>
