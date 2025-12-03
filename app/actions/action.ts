@@ -2,7 +2,6 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { Todo } from "@prisma/client";
-export const dynamic = "force-dynamic";
 
 
 export const getToDos = async (): Promise<Todo[]> => {
