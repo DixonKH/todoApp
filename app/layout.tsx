@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "ToDo App",
-  description: "A modern todo application built with Next.js, Prisma, and MongoDB",
+  description:
+    "A modern todo application built with Next.js, Prisma, and MongoDB",
 };
 
 export default function RootLayout({
@@ -13,10 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className="min-h-screen "
-      >
-        {children}
+      <body className="min-h-screen">
+        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
       </body>
     </html>
   );
