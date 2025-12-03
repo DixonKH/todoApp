@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { ToggleToDo, updateToDo, deleteToDo } from "../actions/action";
+import { toggleToDo, updateToDo, deleteToDo } from "../actions/action";
 import { Todo } from "@prisma/client";
 import { start } from "repl";
 
@@ -14,7 +14,7 @@ export const TodoItem = ({ todo }: { todo: Todo }) => {
   const handleToogle = () => {
     startTransition(async () => {
       try {
-        await ToggleToDo(todo.id);
+        await toggleToDo(todo.id);
       } catch (error) {
         console.error("Error toggling todo:", error);
       }
@@ -41,7 +41,7 @@ export const TodoItem = ({ todo }: { todo: Todo }) => {
     if (!title.trim()) return;
     startTransition(async () => {
       try {
-        await updateToDo(todo.id, title.trim(), description || "");
+        await updateToDo(todo.id, title.trim(), description.trim() || "");
         setIsEditing(false);
       } catch (error) {
         console.error("Error updating todo:", error);

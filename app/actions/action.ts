@@ -58,7 +58,7 @@ export const updateToDo = async (
   }
 };
 
-export const ToggleToDo = async (id: string) => {
+export const toggleToDo = async (id: string) => {
   try {
     const todo = await prisma.todo.findUnique({
       where: { id },
